@@ -19,9 +19,8 @@ if [ "${INPUT_DEBUG:-true}" = "true" ]; then
   echo "DEBUG: Push completed, running cleanup script"
 fi
 
-# Ensure cleanup.sh is executable
-chmod +x ./cleanup.sh
-./cleanup.sh codecommit
+# Run cleanup script
+/cleanup.sh codecommit
 
 # Debug info
 if [ "${INPUT_DEBUG:-true}" = "true" ]; then
