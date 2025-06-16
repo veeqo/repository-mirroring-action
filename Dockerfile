@@ -9,4 +9,6 @@ COPY mirror.sh /mirror.sh
 COPY setup-ssh.sh /setup-ssh.sh
 COPY cleanup.sh /cleanup.sh
 
+RUN chmod +x /mirror.sh /setup-ssh.sh /cleanup.sh
+
 ENTRYPOINT ["/mirror.sh"]
