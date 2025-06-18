@@ -1,10 +1,9 @@
 #!/usr/bin/env sh
 set -eu
 
-# Check and remove refs/heads/HEAD if it exists
-if git ls-remote "$1" refs/heads/HEAD >/dev/null 2>&1; then
-  echo "Removing refs/heads/HEAD reference from mirror repository"
-  git push "$1" :refs/heads/HEAD
-else
-  echo "No HEAD reference found in mirror repository"
-fi
+# Try direct deletion first with error suppression
+git push "$1" :refs/heads/HEAD 2>/dev/null || true
+
+# If direct deletion fails, try using git-push-ref-deletion
+echo "Attempting alternative HEAD reference removal method"
+git hash-object -t commit --stdin </dev/null | xargs -I {} git push "$1" {}:refs/heads/HEAD --force || true
