@@ -17,7 +17,7 @@ inputs:
   debug:
     description: "Enable verbose debugging output"
     required: false
-    default: "true"
+    default: "false"
 runs:
   using: 'docker'
   image: 'Dockerfile'
