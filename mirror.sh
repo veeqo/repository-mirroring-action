@@ -6,8 +6,12 @@ set -eu
 export GIT_SSH_COMMAND="ssh -v -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no -l $INPUT_SSH_USERNAME"
 git remote add codecommit "$INPUT_TARGET_REPO_URL"
 
-# Push only master branch
-git push codecommit master
+# Determine default branch
+DEFAULT_BRANCH=$(git symbolic-ref --short HEAD || echo "master")
+echo "Using default branch: $DEFAULT_BRANCH"
+
+# Push the default branch
+git push codecommit "$DEFAULT_BRANCH"
 
 # Run cleanup script
 /cleanup.sh codecommit
