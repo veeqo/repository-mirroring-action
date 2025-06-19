@@ -15,6 +15,3 @@ git push codecommit "$DEFAULT_BRANCH"
 
 # Run cleanup script
 /cleanup.sh codecommit
-
-# List remotes
-git ls-remote codecommit
