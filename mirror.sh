@@ -3,6 +3,8 @@ set -eu
 
 /setup-ssh.sh
 
+git config --global --add safe.directory /github/workspace
+
 export GIT_SSH_COMMAND="ssh -v -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no -l $INPUT_SSH_USERNAME"
 git remote add codecommit "$INPUT_TARGET_REPO_URL"
 
